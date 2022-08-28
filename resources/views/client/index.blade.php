@@ -3,7 +3,13 @@
 @section('content')
     <div class="container py-5 text-center">
         <h1>Listado de clientes</h1>
-        <a href="{{ route('client.index') }}" class="btn btn-primary">Crear clientes</a>
+        <a href="{{ route('client.create') }}" class="btn btn-primary">Crear clientes</a>
+
+        @if (Session::has('mensaje'))
+            <div class="alert alert-info my-5">
+                {{ Session::get('mensaje') }}
+            </div>
+        @endif
 
         <table class="table">
             <thead>

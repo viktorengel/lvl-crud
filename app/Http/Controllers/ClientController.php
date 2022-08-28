@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ClientController extends Controller
 {
@@ -24,7 +25,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('client.form');
     }
 
     /**
@@ -35,7 +36,15 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:15',
+            'due' => 'required|gte:50'
+        ]);
+
+        $client = Client::created($request->only('name','due','comment'));
+        Session::flash('mensaje', 'registro creado con exito!');
+        
+        return redirect()->route('client.index');
     }
 
     /**
