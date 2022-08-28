@@ -17,5 +17,4 @@
                 <td>Editar - Eliminar</td>
             </tbody>
         </table>
-        
 @endsection
